@@ -1,0 +1,70 @@
+name: "ftp_fetch"
+description: Download files via FTP with resilient retry handling
+keywords:
+  - ftp
+  - download
+  - wget
+  - fetch
+tools:
+  - "wget":
+      description: GNU Wget is a free utility for non-interactive download of files from the Web.
+      homepage: https://www.gnu.org/software/wget/
+      licence: ["GPL-3.0-or-later"]
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'test' ]`
+    - url:
+        type: string
+        description: FTP URL to download
+  - - checksum:
+        type: string
+        description: |
+          Optional checksum string for validation (e.g. `md5:abc123...`).
+          Leave empty to skip checksum validation.
+  - - checksum_url:
+        type: string
+        description: |
+          Optional URL to fetch a checksum file from.
+          Leave empty to skip checksum URL validation.
+output:
+  - file:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'test' ]`
+      - "*.downloaded":
+          type: file
+          description: Downloaded file(s)
+          pattern: "*.downloaded"
+  - log:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'test' ]`
+      - "*.log":
+          type: file
+          description: Download log file
+          pattern: "*.log"
+  - status:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'test' ]`
+      - success:
+          type: boolean
+          description: Whether the download completed successfully
+  - versions:
+      - "versions.yml":
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+authors:
+  - "@timrozday"
+maintainers:
+  - "@timrozday"

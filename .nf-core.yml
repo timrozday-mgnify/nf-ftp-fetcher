@@ -1,0 +1,77 @@
+repository_type: pipeline
+
+nf_core_version: 3.5.1
+
+lint:
+  files_unchanged:
+    - .prettierignore
+  nextflow_config:
+    - process.cpus
+    - process.memory
+    - process.time
+    - custom_config
+    - params.custom_config_version
+    - params.custom_config_base
+    - manifest.name
+    - manifest.homePage
+  multiqc_config: false
+  files_exist:
+    - CHANGELOG.md
+    - LICENSE
+    - docs/output.md
+    - docs/README.md
+    - docs/usage.md
+    - conf/igenomes.config
+    - conf/igenomes_ignored.config
+    - assets/email_template.html
+    - assets/sendmail_template.txt
+    - assets/email_template.txt
+    - assets/nf-core-nf-ftp-fetcher_logo_light.png
+    - assets/multiqc_config.yml
+    - CODE_OF_CONDUCT.md
+    - .github/ISSUE_TEMPLATE/bug_report.yml
+    - .github/ISSUE_TEMPLATE/feature_request.yml
+    - .github/ISSUE_TEMPLATE/config.yml
+    - .github/PULL_REQUEST_TEMPLATE.md
+    - .github/CONTRIBUTING.md
+    - .github/.dockstore.yml
+    - .github/workflows/branch.yml
+    - .github/workflows/nf-test.yml
+    - .github/actions/get-shards/action.yml
+    - .github/actions/nf-test/action.yml
+    - .github/workflows/linting_comment.yml
+    - .github/workflows/linting.yml
+    - .github/workflows/awstest.yml
+    - .github/workflows/awsfulltest.yml
+    - docs/images/nf-core-nf-ftp-fetcher_logo_light.png
+    - docs/images/nf-core-nf-ftp-fetcher_logo_dark.png
+  included_configs: false
+  readme:
+    - nextflow_badge
+    - nfcore_template_badge
+
+template:
+  org: MGnify
+  name: nf-ftp-fetcher
+  description: Nextflow module for fetching files via FTP with resilient retry handling
+  author: Timothy Rozday
+  version: 1.0.0dev
+  skip_features:
+    - github
+    - ci
+    - github_badges
+    - changelog
+    - license
+    - documentation
+    - igenomes
+    - nf_core_configs
+    - multiqc
+    - fastqc
+    - seqera_platform
+    - slackreport
+    - email
+    - adaptivecard
+    - rocrate
+    - codespaces
+    - gpu
+  is_nfcore: false

@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(conda run:*)",
+      "Bash(conda env list:*)",
+      "Bash(/Users/timrozday/miniforge3/bin/conda env list:*)",
+      "Bash(/Users/timrozday/miniforge3/bin/conda list:*)",
+      "WebSearch",
+      "WebFetch(domain:nf-co.re)",
+      "WebFetch(domain:www.nextflow.io)",
+      "WebFetch(domain:www.nf-test.com)",
+      "WebFetch(domain:training.nextflow.io)",
+      "WebFetch(domain:nextflow.io)",
+      "Bash(/Users/timrozday/miniforge3/bin/conda run -n nf-core nf-core pipelines create:*)",
+      "Bash(/Users/timrozday/miniforge3/bin/conda run -n nf-core nf-core:*)",
+      "Bash(/Users/timrozday/miniforge3/bin/conda run -n nf-core nf-core pipelines --help)",
+      "WebFetch(domain:github.com)",
+      "Bash(python3:*)",
+      "Bash(/Users/timrozday/miniforge3/bin/conda run:*)",
+      "Bash(curl:*)"
+    ]
+  }
+}

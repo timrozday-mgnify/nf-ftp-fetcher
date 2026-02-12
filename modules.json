@@ -1,0 +1,11 @@
+{
+    "name": "MGnify/nf-ftp-fetcher",
+    "homePage": "https://github.com/MGnify/nf-ftp-fetcher",
+    "repos": {
+        "https://github.com/nf-core/modules.git": {
+            "modules": {
+                "nf-core": {}
+            }
+        }
+    }
+}

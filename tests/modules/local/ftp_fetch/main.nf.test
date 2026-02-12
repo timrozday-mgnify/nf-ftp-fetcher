@@ -1,0 +1,36 @@
+nextflow_process {
+
+    name "Test Process FTP_FETCH"
+    script "modules/local/ftp_fetch/main.nf"
+    process "FTP_FETCH"
+
+    test("Should run with default parameters") {
+
+        when {
+            process {
+                """
+                input[0] = Channel.of([ [id: 'test'], 'ftp://ftp.ebi.ac.uk/pub/databases/metagenomics/motus/test.txt' ])
+                input[1] = ''
+                input[2] = ''
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assert process.trace.tasks().size() == 1
+
+            with(process.out.file) {
+                assert size() == 1
+            }
+
+            with(process.out.log) {
+                assert size() == 1
+            }
+
+            with(process.out.versions) {
+                assert size() == 1
+            }
+        }
+    }
+}
