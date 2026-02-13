@@ -1,5 +1,5 @@
 sample,fastq_1,fastq_2,single_end
 test_se,ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR108/012/ERR10889412/ERR10889412_1.fastq.gz,,true
 test_se_wrong_path,ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR108/012/ERR10889412/ERR10889412__1.fastq.gz,,true
-test_pe,ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR108/012/ERR10889412/ERR10889412_1.fastq.gz,ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR108/012/ERR10889412/ERR10889412_2.fastq.gz,true
-test_pe_mismatch,ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR108/012/ERR10889412/ERR10889412_1.fastq.gz,ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR108/007/ERR10889407/ERR10889407_2.fastq.gz,true
+test_pe,ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR108/012/ERR10889412/ERR10889412_1.fastq.gz,ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR108/012/ERR10889412/ERR10889412_2.fastq.gz,false
+test_pe_mismatch,ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR108/012/ERR10889412/ERR10889412_1.fastq.gz,ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR108/007/ERR10889407/ERR10889407_2.fastq.gz,false
