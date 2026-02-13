@@ -1,0 +1,2 @@
+sample,fastq_1,fastq_2,single_end
+test_se,ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR135/001/SRR1350261/SRR1350261.fastq.gz,,true

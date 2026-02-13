@@ -1,48 +1,14 @@
-Feb-13 14:47:25.579 [main] INFO  com.askimed.nf.test.App - nf-test 0.9.2
-Feb-13 14:47:25.585 [main] INFO  com.askimed.nf.test.App - Arguments: [test, /Users/timrozday/Documents/nf-ftp-fetcher/modules/local/ftp_fetch_fastp/tests/main.nf.test, --dry-run]
-Feb-13 14:47:26.061 [main] INFO  com.askimed.nf.test.App - Nextflow Version: 25.10.0
-Feb-13 14:47:26.062 [main] INFO  com.askimed.nf.test.commands.RunTestsCommand - Load config from file /Users/timrozday/Documents/nf-ftp-fetcher/nf-test.config...
-Feb-13 14:47:26.248 [main] INFO  com.askimed.nf.test.lang.dependencies.DependencyResolver - Loaded 5 files from directory /Users/timrozday/Documents/nf-ftp-fetcher in 0.014 sec
-Feb-13 14:47:26.248 [main] INFO  com.askimed.nf.test.lang.dependencies.DependencyResolver - Found 1 files containing tests.
-Feb-13 14:47:26.248 [main] DEBUG com.askimed.nf.test.lang.dependencies.DependencyResolver - Found files: [/Users/timrozday/Documents/nf-ftp-fetcher/modules/local/ftp_fetch_fastp/tests/main.nf.test]
-Feb-13 14:47:26.421 [main] INFO  com.askimed.nf.test.commands.RunTestsCommand - Found 18 tests to execute.
-Feb-13 14:47:26.422 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Started test plan
-Feb-13 14:47:26.422 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Running testsuite 'Test Process FTP_FETCH_FASTP' from file '/Users/timrozday/Documents/nf-ftp-fetcher/modules/local/ftp_fetch_fastp/tests/main.nf.test'.
-Feb-13 14:47:26.422 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test 'e76825ef: test_ftp_fetch_fastp_single_end'. type: com.askimed.nf.test.lang.process.ProcessTest
-Feb-13 14:47:26.423 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test 'e76825ef: test_ftp_fetch_fastp_single_end' finished. status: PASSED
-Feb-13 14:47:26.423 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '26c85779: test_ftp_fetch_fastp_paired_end'. type: com.askimed.nf.test.lang.process.ProcessTest
-Feb-13 14:47:26.424 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '26c85779: test_ftp_fetch_fastp_paired_end' finished. status: PASSED
-Feb-13 14:47:26.424 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test 'd10ed90c: test_ftp_fetch_fastp_interleaved'. type: com.askimed.nf.test.lang.process.ProcessTest
-Feb-13 14:47:26.424 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test 'd10ed90c: test_ftp_fetch_fastp_interleaved' finished. status: PASSED
-Feb-13 14:47:26.424 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test 'fcc8bf5f: test_ftp_fetch_fastp_single_end_trim_fail'. type: com.askimed.nf.test.lang.process.ProcessTest
-Feb-13 14:47:26.424 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test 'fcc8bf5f: test_ftp_fetch_fastp_single_end_trim_fail' finished. status: PASSED
-Feb-13 14:47:26.424 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '32733630: test_ftp_fetch_fastp_paired_end_trim_fail'. type: com.askimed.nf.test.lang.process.ProcessTest
-Feb-13 14:47:26.425 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '32733630: test_ftp_fetch_fastp_paired_end_trim_fail' finished. status: PASSED
-Feb-13 14:47:26.425 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test 'fe46e443: test_ftp_fetch_fastp_paired_end_merged'. type: com.askimed.nf.test.lang.process.ProcessTest
-Feb-13 14:47:26.425 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test 'fe46e443: test_ftp_fetch_fastp_paired_end_merged' finished. status: PASSED
-Feb-13 14:47:26.425 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '17790cbb: test_ftp_fetch_fastp_paired_end_merged_adapterlist'. type: com.askimed.nf.test.lang.process.ProcessTest
-Feb-13 14:47:26.425 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '17790cbb: test_ftp_fetch_fastp_paired_end_merged_adapterlist' finished. status: PASSED
-Feb-13 14:47:26.425 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '6cde059d: test_ftp_fetch_fastp_single_end_qc_only'. type: com.askimed.nf.test.lang.process.ProcessTest
-Feb-13 14:47:26.426 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '6cde059d: test_ftp_fetch_fastp_single_end_qc_only' finished. status: PASSED
-Feb-13 14:47:26.426 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test 'cad3994d: test_ftp_fetch_fastp_paired_end_qc_only'. type: com.askimed.nf.test.lang.process.ProcessTest
-Feb-13 14:47:26.426 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test 'cad3994d: test_ftp_fetch_fastp_paired_end_qc_only' finished. status: PASSED
-Feb-13 14:47:26.426 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test 'd5284539: test_ftp_fetch_fastp_single_end - stub'. type: com.askimed.nf.test.lang.process.ProcessTest
-Feb-13 14:47:26.426 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test 'd5284539: test_ftp_fetch_fastp_single_end - stub' finished. status: PASSED
-Feb-13 14:47:26.426 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '9c652022: test_ftp_fetch_fastp_paired_end - stub'. type: com.askimed.nf.test.lang.process.ProcessTest
-Feb-13 14:47:26.427 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '9c652022: test_ftp_fetch_fastp_paired_end - stub' finished. status: PASSED
-Feb-13 14:47:26.427 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '9d658b43: test_ftp_fetch_fastp_interleaved - stub'. type: com.askimed.nf.test.lang.process.ProcessTest
-Feb-13 14:47:26.427 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '9d658b43: test_ftp_fetch_fastp_interleaved - stub' finished. status: PASSED
-Feb-13 14:47:26.427 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '4cfb785b: test_ftp_fetch_fastp_single_end_trim_fail - stub'. type: com.askimed.nf.test.lang.process.ProcessTest
-Feb-13 14:47:26.427 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '4cfb785b: test_ftp_fetch_fastp_single_end_trim_fail - stub' finished. status: PASSED
-Feb-13 14:47:26.427 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test 'edac3947: test_ftp_fetch_fastp_paired_end_trim_fail - stub'. type: com.askimed.nf.test.lang.process.ProcessTest
-Feb-13 14:47:26.428 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test 'edac3947: test_ftp_fetch_fastp_paired_end_trim_fail - stub' finished. status: PASSED
-Feb-13 14:47:26.428 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '9e4bcd1a: test_ftp_fetch_fastp_paired_end_merged - stub'. type: com.askimed.nf.test.lang.process.ProcessTest
-Feb-13 14:47:26.428 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '9e4bcd1a: test_ftp_fetch_fastp_paired_end_merged - stub' finished. status: PASSED
-Feb-13 14:47:26.428 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '240ccdb9: test_ftp_fetch_fastp_paired_end_merged_adapterlist - stub'. type: com.askimed.nf.test.lang.process.ProcessTest
-Feb-13 14:47:26.428 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '240ccdb9: test_ftp_fetch_fastp_paired_end_merged_adapterlist - stub' finished. status: PASSED
-Feb-13 14:47:26.428 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '928d9bfa: test_ftp_fetch_fastp_single_end_qc_only - stub'. type: com.askimed.nf.test.lang.process.ProcessTest
-Feb-13 14:47:26.429 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '928d9bfa: test_ftp_fetch_fastp_single_end_qc_only - stub' finished. status: PASSED
-Feb-13 14:47:26.429 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '1994292f: test_ftp_fetch_fastp_paired_end_qc_only - stub'. type: com.askimed.nf.test.lang.process.ProcessTest
-Feb-13 14:47:26.429 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '1994292f: test_ftp_fetch_fastp_paired_end_qc_only - stub' finished. status: PASSED
-Feb-13 14:47:26.429 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Testsuite 'Test Process FTP_FETCH_FASTP' finished. snapshot file: false, skipped tests: false, failed tests: false
-Feb-13 14:47:26.429 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Executed 18 tests. 0 tests failed. Done!
+Feb-13 14:55:01.215 [main] INFO  com.askimed.nf.test.App - nf-test 0.9.2
+Feb-13 14:55:01.221 [main] INFO  com.askimed.nf.test.App - Arguments: [test, --dry-run]
+Feb-13 14:55:01.694 [main] INFO  com.askimed.nf.test.App - Nextflow Version: 25.10.0
+Feb-13 14:55:01.695 [main] INFO  com.askimed.nf.test.commands.RunTestsCommand - Load config from file /Users/timrozday/Documents/nf-ftp-fetcher/nf-test.config...
+Feb-13 14:55:01.886 [main] INFO  com.askimed.nf.test.lang.dependencies.DependencyResolver - Loaded 5 files from directory /Users/timrozday/Documents/nf-ftp-fetcher in 0.02 sec
+Feb-13 14:55:01.886 [main] INFO  com.askimed.nf.test.lang.dependencies.DependencyResolver - Found 1 files containing tests.
+Feb-13 14:55:01.886 [main] DEBUG com.askimed.nf.test.lang.dependencies.DependencyResolver - Found files: [/Users/timrozday/Documents/nf-ftp-fetcher/tests/modules/local/ftp_fetch/main.nf.test]
+Feb-13 14:55:01.961 [main] INFO  com.askimed.nf.test.commands.RunTestsCommand - Found 1 tests to execute.
+Feb-13 14:55:01.961 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Started test plan
+Feb-13 14:55:01.961 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Running testsuite 'Test Process FTP_FETCH' from file '/Users/timrozday/Documents/nf-ftp-fetcher/tests/modules/local/ftp_fetch/main.nf.test'.
+Feb-13 14:55:01.961 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '76c88b0e: Should run with default parameters'. type: com.askimed.nf.test.lang.process.ProcessTest
+Feb-13 14:55:01.963 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '76c88b0e: Should run with default parameters' finished. status: PASSED
+Feb-13 14:55:01.964 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Testsuite 'Test Process FTP_FETCH' finished. snapshot file: false, skipped tests: false, failed tests: false
+Feb-13 14:55:01.964 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Executed 1 tests. 0 tests failed. Done!

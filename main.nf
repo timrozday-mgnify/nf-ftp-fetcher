@@ -7,19 +7,36 @@
 ----------------------------------------------------------------------------------------
 */
 
-include { FTP_FETCH } from './modules/local/ftp_fetch/main'
+include { FTP_FETCH_FASTP } from './modules/local/ftp_fetch_fastp/main'
 
 workflow {
 
-    // Build input channel from params
-    ch_input = Channel.of(
-        [ [id: 'test'], params.url ]
-    )
+    // Validate input parameter
+    if (!params.input) {
+        error "Please provide a samplesheet CSV via --input"
+    }
 
-    FTP_FETCH(
-        ch_input,
-        params.checksum,
-        params.checksum_url
+    // Parse samplesheet into channel
+    ch_reads = Channel
+        .fromPath(params.input, checkIfExists: true)
+        .splitCsv(header: true)
+        .map { row ->
+            def meta = [id: row.sample, single_end: row.single_end.toBoolean()]
+            def urls = meta.single_end ? row.fastq_1 : [row.fastq_1, row.fastq_2]
+            def adapter = params.adapter_fasta ? file(params.adapter_fasta) : []
+            [meta, urls, adapter]
+        }
+
+    FTP_FETCH_FASTP(
+        ch_reads,
+        params.discard_trimmed_pass,
+        params.save_trimmed_fail,
+        params.save_merged,
+        params.max_retries,
+        params.wait_retry,
+        params.timeout,
+        params.resume_download,
+        params.soft_fail
     )
 }
 
