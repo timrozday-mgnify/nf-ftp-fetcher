@@ -94,8 +94,9 @@ nf-ftp-fetcher/
 - Use `task.ext.when` for conditional execution
 - Report tool versions in `versions.yml`
 - Use nf-core label conventions (`process_single`, `process_low`, etc.)
-- Container directive pattern supporting both Docker and Singularity
-- Conda directive referencing `${moduleDir}/environment.yml`
+- Container directive pattern supporting both Docker and Singularity (fallback when Wave is unavailable)
+- Conda directive referencing `${moduleDir}/environment.yml` (used by Wave to auto-build containers)
+- Docker enabled by default; Singularity/Apptainer available via profiles
 
 ### Script Conventions
 - Scripts in `bin/` must have shebang lines and be executable (`chmod +x`)
@@ -122,8 +123,11 @@ nf-ftp-fetcher/
 
 ### Running Nextflow Directly
 ```bash
-/Users/timrozday/miniforge3/bin/conda run -n nf-core nextflow run main.nf -profile test,conda
+/Users/timrozday/miniforge3/bin/conda run -n nf-core nextflow run main.nf -profile test
 ```
+
+Docker is enabled by default. The Wave plugin auto-builds containers from each module's
+`environment.yml`. For Singularity, use `-profile test,singularity`.
 
 ## wget Key Flags for FTP
 
