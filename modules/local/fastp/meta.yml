@@ -1,9 +1,12 @@
 name: fastp
-description: Perform adapter/quality trimming on sequencing reads
+description: Download FASTQ files over FTP and perform adapter/quality trimming with fastp, with retry/resume support and soft failure mode.
 keywords:
   - trimming
   - quality control
   - fastq
+  - ftp
+  - download
+  - retry
 tools:
   - fastp:
       description: |
@@ -12,19 +15,22 @@ tools:
       doi: 10.1093/bioinformatics/bty560
       licence: ["MIT"]
       identifier: biotools:fastp
+  - wget:
+      description: |
+        GNU Wget is a free utility for non-interactive download of files from the Web, supporting HTTP, HTTPS, and FTP protocols.
+      documentation: https://www.gnu.org/software/wget/
+      licence: ["GPL-3.0-or-later"]
 input:
   - - meta:
         type: map
         description: |
           Groovy Map containing sample information. Use 'single_end: true' to specify single ended or interleaved FASTQs. Use 'single_end: false' for paired-end reads.
           e.g. [ id:'test', single_end:false ]
-    - reads:
-        type: file
+    - urls:
+        type: string
         description: |
-          List of input FastQ files of size 1 and 2 for single-end and paired-end data,
-          respectively. If you wish to run interleaved paired-end data,  supply as single-end data
-          but with `--interleaved_in` in your `modules.conf`'s `ext.args` for the module.
-        ontologies: []
+          FTP URL string (single-end/interleaved) or list of two FTP URL strings (paired-end)
+          for downloading FASTQ files.
     - adapter_fasta:
         type: file
         description: File in FASTA format containing possible adapters to remove.
@@ -42,6 +48,23 @@ input:
   - save_merged:
       type: boolean
       description: Specify true to save all merged reads to a file ending in `*.merged.fastq.gz`
+  - max_retries:
+      type: integer
+      description: Total number of download+fastp attempts before giving up (default 3)
+  - wait_retry:
+      type: integer
+      description: Seconds to wait between retry attempts (default 10)
+  - timeout:
+      type: integer
+      description: wget connection/read/dns timeout in seconds (default 60)
+  - resume:
+      type: boolean
+      description: Use wget --continue to resume partial downloads (default true)
+  - soft_fail:
+      type: boolean
+      description: |
+        If true, return empty output files and exit 0 on failure instead of erroring.
+        Allows downstream pipeline handling of failures. (default false)
 output:
   reads:
     - - meta:
@@ -85,10 +108,10 @@ output:
           description: |
             Groovy Map containing sample information
             e.g. [ id:'test', single_end:false ]
-      - "*.log":
+      - "*.fastp.log":
           type: file
-          description: fastq log file
-          pattern: "*.log"
+          description: fastp log file
+          pattern: "*.fastp.log"
           ontologies: []
   reads_fail:
     - - meta:
@@ -114,6 +137,28 @@ output:
           description: Reads that were successfully merged
           pattern: "*.{merged.fastq.gz}"
           ontologies: []
+  download_log:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+      - "*.download.log":
+          type: file
+          description: Log of all download attempts including timestamps and outcomes
+          pattern: "*.download.log"
+          ontologies: []
+  status:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+      - "*.status":
+          type: file
+          description: File containing "true" or "false" indicating download+fastp success
+          pattern: "*.status"
+          ontologies: []
   versions_fastp:
     - - "${task.process}":
           type: string
@@ -122,6 +167,16 @@ output:
           type: string
           description: The name of the tool
       - 'fastp --version 2>&1 | sed -e "s/fastp //g"':
+          type: eval
+          description: The expression to obtain the version of the tool
+  versions_wget:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - wget:
+          type: string
+          description: The name of the tool
+      - 'wget --version 2>&1 | head -1 | sed -e "s/GNU Wget //;s/ .*//"':
           type: eval
           description: The expression to obtain the version of the tool
 topics:
@@ -133,6 +188,15 @@ topics:
           type: string
           description: The name of the tool
       - 'fastp --version 2>&1 | sed -e "s/fastp //g"':
+          type: eval
+          description: The expression to obtain the version of the tool
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - wget:
+          type: string
+          description: The name of the tool
+      - 'wget --version 2>&1 | head -1 | sed -e "s/GNU Wget //;s/ .*//"':
           type: eval
           description: The expression to obtain the version of the tool
 authors:
