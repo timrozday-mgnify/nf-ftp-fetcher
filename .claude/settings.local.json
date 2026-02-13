@@ -17,7 +17,12 @@
       "WebFetch(domain:github.com)",
       "Bash(python3:*)",
       "Bash(/Users/timrozday/miniforge3/bin/conda run:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(find:*)",
+      "Bash(printf:*)",
+      "Bash(gzip:*)",
+      "Bash(zcat:*)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   }
 }

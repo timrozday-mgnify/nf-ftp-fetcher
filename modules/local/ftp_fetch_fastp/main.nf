@@ -220,7 +220,6 @@ process FTP_FETCH_FASTP {
             touch "\${PREFIX}.fastp.json"
             touch "\${PREFIX}.fastp.html"
             touch "\${PREFIX}.fastp.log"
-            exit 0
         else
             exit 1
         fi

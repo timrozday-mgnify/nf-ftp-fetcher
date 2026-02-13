@@ -285,6 +285,8 @@ nextflow_process {
 
     // =========================================================================
     // test_pe_mismatch: fastp retry — 2 retries, soft fail
+    //   Uses a valid small FASTQ for R1 and a non-FASTQ file (FASTA index)
+    //   for R2 so fastp reliably fails on invalid input format.
     // =========================================================================
 
     test("test_pe_mismatch: retries on fastp failure 2 times then soft-fails") {
@@ -294,8 +296,8 @@ nextflow_process {
                 """
                 input[0] = Channel.of([
                     [id: 'test_pe_mismatch', single_end: false],
-                    ['ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR108/012/ERR10889412/ERR10889412_1.fastq.gz',
-                     'ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR108/007/ERR10889407/ERR10889407_2.fastq.gz'],
+                    ['https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/fastq/test_1.fastq.gz',
+                     'https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.fai'],
                     []
                 ])
                 input[1] = false  // discard_trimmed_pass
@@ -304,7 +306,7 @@ nextflow_process {
                 input[4] = 2     // max_retries
                 input[5] = 1     // wait_retry
                 input[6] = 60    // timeout
-                input[7] = true  // resume
+                input[7] = false // resume
                 input[8] = true  // soft_fail
                 """
             }
@@ -349,8 +351,8 @@ nextflow_process {
                 """
                 input[0] = Channel.of([
                     [id: 'test_pe_mismatch', single_end: false],
-                    ['ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR108/012/ERR10889412/ERR10889412_1.fastq.gz',
-                     'ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR108/007/ERR10889407/ERR10889407_2.fastq.gz'],
+                    ['https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/fastq/test_1.fastq.gz',
+                     'https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.fai'],
                     []
                 ])
                 input[1] = false  // discard_trimmed_pass
@@ -359,7 +361,7 @@ nextflow_process {
                 input[4] = 3     // max_retries
                 input[5] = 1     // wait_retry
                 input[6] = 60    // timeout
-                input[7] = true  // resume
+                input[7] = false // resume
                 input[8] = true  // soft_fail
                 """
             }
@@ -400,8 +402,8 @@ nextflow_process {
                 """
                 input[0] = Channel.of([
                     [id: 'test_pe_mismatch', single_end: false],
-                    ['ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR108/012/ERR10889412/ERR10889412_1.fastq.gz',
-                     'ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR108/007/ERR10889407/ERR10889407_2.fastq.gz'],
+                    ['https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/fastq/test_1.fastq.gz',
+                     'https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.fai'],
                     []
                 ])
                 input[1] = false  // discard_trimmed_pass
@@ -410,7 +412,7 @@ nextflow_process {
                 input[4] = 1     // max_retries
                 input[5] = 1     // wait_retry
                 input[6] = 60    // timeout
-                input[7] = true  // resume
+                input[7] = false // resume
                 input[8] = false // soft_fail disabled
                 """
             }
