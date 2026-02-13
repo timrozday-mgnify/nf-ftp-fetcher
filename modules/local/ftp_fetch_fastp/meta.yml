@@ -1,4 +1,4 @@
-name: fastp
+name: ftp_fetch_fastp
 description: Download FASTQ files over FTP and perform adapter/quality trimming with fastp, with retry/resume support and soft failure mode.
 keywords:
   - trimming

@@ -1,13 +1,13 @@
 nextflow_process {
 
-    name "Test Process FASTP"
+    name "Test Process FTP_FETCH_FASTP"
     script "../main.nf"
-    process "FASTP"
+    process "FTP_FETCH_FASTP"
     tag "modules"
-    tag "modules_nfcore"
-    tag "fastp"
+    tag "modules_local"
+    tag "ftp_fetch_fastp"
 
-    test("test_fastp_single_end") {
+    test("test_ftp_fetch_fastp_single_end") {
 
         when {
 
@@ -45,7 +45,7 @@ nextflow_process {
         }
     }
 
-    test("test_fastp_paired_end") {
+    test("test_ftp_fetch_fastp_paired_end") {
 
         when {
 
@@ -85,7 +85,7 @@ nextflow_process {
         }
     }
 
-    test("fastp test_fastp_interleaved") {
+    test("test_ftp_fetch_fastp_interleaved") {
 
         config './nextflow.interleaved.config'
         when {
@@ -122,7 +122,7 @@ nextflow_process {
         }
     }
 
-    test("test_fastp_single_end_trim_fail") {
+    test("test_ftp_fetch_fastp_single_end_trim_fail") {
 
         when {
 
@@ -159,7 +159,7 @@ nextflow_process {
         }
     }
 
-    test("test_fastp_paired_end_trim_fail") {
+    test("test_ftp_fetch_fastp_paired_end_trim_fail") {
 
         config './nextflow.save_failed.config'
         when {
@@ -199,7 +199,7 @@ nextflow_process {
         }
     }
 
-    test("test_fastp_paired_end_merged") {
+    test("test_ftp_fetch_fastp_paired_end_merged") {
 
         when {
             process {
@@ -238,7 +238,7 @@ nextflow_process {
         }
     }
 
-    test("test_fastp_paired_end_merged_adapterlist") {
+    test("test_ftp_fetch_fastp_paired_end_merged_adapterlist") {
 
         when {
             process {
@@ -277,7 +277,7 @@ nextflow_process {
         }
     }
 
-    test("test_fastp_single_end_qc_only") {
+    test("test_ftp_fetch_fastp_single_end_qc_only") {
 
         when {
             process {
@@ -317,7 +317,7 @@ nextflow_process {
         }
     }
 
-    test("test_fastp_paired_end_qc_only") {
+    test("test_ftp_fetch_fastp_paired_end_qc_only") {
 
         when {
             process {
@@ -359,7 +359,7 @@ nextflow_process {
         }
     }
 
-    test("test_fastp_single_end - stub") {
+    test("test_ftp_fetch_fastp_single_end - stub") {
 
         options "-stub"
 
@@ -392,7 +392,7 @@ nextflow_process {
         }
     }
 
-    test("test_fastp_paired_end - stub") {
+    test("test_ftp_fetch_fastp_paired_end - stub") {
 
         options "-stub"
 
@@ -426,7 +426,7 @@ nextflow_process {
         }
     }
 
-    test("fastp - stub test_fastp_interleaved") {
+    test("test_ftp_fetch_fastp_interleaved - stub") {
 
         options "-stub"
 
@@ -459,7 +459,7 @@ nextflow_process {
         }
     }
 
-    test("test_fastp_single_end_trim_fail - stub") {
+    test("test_ftp_fetch_fastp_single_end_trim_fail - stub") {
 
         options "-stub"
 
@@ -492,7 +492,7 @@ nextflow_process {
         }
     }
 
-    test("test_fastp_paired_end_trim_fail - stub") {
+    test("test_ftp_fetch_fastp_paired_end_trim_fail - stub") {
 
         options "-stub"
 
@@ -526,7 +526,7 @@ nextflow_process {
         }
     }
 
-    test("test_fastp_paired_end_merged - stub") {
+    test("test_ftp_fetch_fastp_paired_end_merged - stub") {
 
         options "-stub"
 
@@ -559,7 +559,7 @@ nextflow_process {
         }
     }
 
-    test("test_fastp_paired_end_merged_adapterlist - stub") {
+    test("test_ftp_fetch_fastp_paired_end_merged_adapterlist - stub") {
 
         options "-stub"
 
@@ -594,7 +594,7 @@ nextflow_process {
         }
     }
 
-    test("test_fastp_single_end_qc_only - stub") {
+    test("test_ftp_fetch_fastp_single_end_qc_only - stub") {
 
         options "-stub"
 
@@ -626,7 +626,7 @@ nextflow_process {
         }
     }
 
-    test("test_fastp_paired_end_qc_only - stub") {
+    test("test_ftp_fetch_fastp_paired_end_qc_only - stub") {
 
         options "-stub"
 

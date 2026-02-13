@@ -1,4 +1,4 @@
-process FASTP {
+process FTP_FETCH_FASTP {
     tag "$meta.id"
     label 'process_medium'
 
