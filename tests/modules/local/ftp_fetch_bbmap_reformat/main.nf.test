@@ -1,0 +1,167 @@
+nextflow_process {
+
+    name "Test Process FTP_FETCH_BBMAP_REFORMAT"
+    script "modules/local/ftp_fetch_bbmap_reformat/main.nf"
+    process "FTP_FETCH_BBMAP_REFORMAT"
+    config "tests/modules/local/ftp_fetch_bbmap_reformat/nextflow.config"
+
+    // =========================================================================
+    // test_se: Single-end — successful download and reformat
+    // =========================================================================
+
+    test("test_se: downloads and reformats single file successfully") {
+
+        when {
+            process {
+                """
+                input[0] = Channel.of([
+                    [id: 'test_se', single_end: true],
+                    'ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR108/012/ERR10889412/ERR10889412_1.fastq.gz'
+                ])
+                input[1] = 'fastq.gz' // out_fmt
+                input[2] = 3     // max_retries
+                input[3] = 10    // wait_retry
+                input[4] = 60    // timeout
+                input[5] = true  // resume
+                input[6] = false // soft_fail
+                """
+            }
+        }
+
+        then {
+            assert process.success
+
+            // Verify all expected outputs are emitted
+            assert process.out.reformated.size() == 1
+            assert process.out.log.size() == 1
+            assert process.out.download_log.size() == 1
+            assert process.out.status.size() == 1
+
+            // Status should report success
+            def status_text = path(process.out.status[0][1]).text.trim()
+            assert status_text == "true"
+
+            // Download log should show a clean first-attempt success
+            def log_text = path(process.out.download_log[0][1]).text
+            assert log_text.contains("=== Attempt 1/3 ===")
+            assert log_text.contains("Download succeeded, running reformat.sh...")
+            assert log_text.contains("reformat.sh succeeded on attempt 1")
+            // No failures should be logged
+            assert !log_text.contains("Download failed")
+            assert !log_text.contains("reformat.sh failed")
+            assert !log_text.contains("Attempt 2/3")
+        }
+    }
+
+    // =========================================================================
+    // test_se_wrong_path: wget retry — 2 retries, soft fail
+    // =========================================================================
+
+    test("test_se_wrong_path: retries wget download 2 times then soft-fails") {
+
+        when {
+            process {
+                """
+                input[0] = Channel.of([
+                    [id: 'test_se_wrong_path', single_end: true],
+                    'ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR108/012/ERR10889412/ERR10889412__1.fastq.gz'
+                ])
+                input[1] = 'fastq.gz' // out_fmt
+                input[2] = 2     // max_retries
+                input[3] = 1     // wait_retry (short for testing)
+                input[4] = 5     // timeout (short for testing)
+                input[5] = false // resume
+                input[6] = true  // soft_fail
+                """
+            }
+        }
+
+        then {
+            assert process.success
+
+            def status_text = path(process.out.status[0][1]).text.trim()
+            assert status_text == "false"
+
+            def log_text = path(process.out.download_log[0][1]).text
+            assert log_text.contains("=== Attempt 1/2 ===")
+            assert log_text.contains("=== Attempt 2/2 ===")
+            assert log_text.contains("Download failed")
+            assert log_text.contains("All 2 attempts failed")
+            assert log_text.contains("Soft fail mode: creating empty output files")
+
+            assert log_text.contains("Sleeping 1s before next attempt...")
+
+            assert !log_text.contains("running reformat.sh")
+        }
+    }
+
+    // =========================================================================
+    // test_se_wrong_path: wget retry — 3 retries, soft fail
+    // =========================================================================
+
+    test("test_se_wrong_path: retries wget download 3 times then soft-fails") {
+
+        when {
+            process {
+                """
+                input[0] = Channel.of([
+                    [id: 'test_se_wrong_path', single_end: true],
+                    'ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR108/012/ERR10889412/ERR10889412__1.fastq.gz'
+                ])
+                input[1] = 'fastq.gz' // out_fmt
+                input[2] = 3     // max_retries
+                input[3] = 1     // wait_retry
+                input[4] = 5     // timeout
+                input[5] = false // resume
+                input[6] = true  // soft_fail
+                """
+            }
+        }
+
+        then {
+            assert process.success
+
+            def status_text = path(process.out.status[0][1]).text.trim()
+            assert status_text == "false"
+
+            def log_text = path(process.out.download_log[0][1]).text
+            assert log_text.contains("=== Attempt 1/3 ===")
+            assert log_text.contains("=== Attempt 2/3 ===")
+            assert log_text.contains("=== Attempt 3/3 ===")
+            assert log_text.contains("Download failed")
+            assert log_text.contains("All 3 attempts failed")
+            assert log_text.contains("Soft fail mode: creating empty output files")
+
+            assert !log_text.contains("Attempt 4/")
+        }
+    }
+
+    // =========================================================================
+    // test_se_wrong_path: hard failure — soft_fail disabled
+    // =========================================================================
+
+    test("test_se_wrong_path: fails when soft_fail is disabled") {
+
+        when {
+            process {
+                """
+                input[0] = Channel.of([
+                    [id: 'test_se_wrong_path', single_end: true],
+                    'ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR108/012/ERR10889412/ERR10889412__1.fastq.gz'
+                ])
+                input[1] = 'fastq.gz' // out_fmt
+                input[2] = 1     // max_retries
+                input[3] = 1     // wait_retry
+                input[4] = 5     // timeout
+                input[5] = false // resume
+                input[6] = false // soft_fail disabled
+                """
+            }
+        }
+
+        then {
+            assert process.failed
+        }
+    }
+
+}

@@ -22,7 +22,8 @@
       "Bash(printf:*)",
       "Bash(gzip:*)",
       "Bash(zcat:*)",
-      "WebFetch(domain:raw.githubusercontent.com)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(gh api:*)"
     ]
   }
 }
